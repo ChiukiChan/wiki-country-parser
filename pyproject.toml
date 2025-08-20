@@ -1,0 +1,49 @@
+[project]
+name = "wiki-country-parser"
+version = "1.0.0"
+description = "Simple BS4+FastAPI project to parse and cache countries from wiki and serve as REST API"
+requires-python = ">=3.12"
+dependencies = [
+    "aiohttp~=3.12.15",
+    "aiosqlite~=0.21.0",
+    "beautifulsoup4~=4.13.4",
+    "fastapi~=0.116.1",
+    "httpx>=0.28.1",
+    "loguru>=0.7.3",
+    "lxml~=6.0.0",
+    "pydantic-settings~=2.10.1",
+    "pydantic~=2.11.7",
+    "uvicorn~=0.35.0",
+]
+
+[build-system]
+requires = ["hatchling", "editables ~= 0.5"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src"]
+
+[tool.ruff]
+line-length = 120
+target-version = "py312"
+src = ["."]
+exclude = [".git", ".venv", "venv", "build", "dist", "__pycache__"]
+
+[tool.ruff.lint]
+select = ["E","F","I","B","UP","SIM"]
+ignore = ["B904"]
+
+
+[tool.ruff.format]
+quote-style = "double"
+indent-style = "space"
+docstring-code-format = true
+skip-magic-trailing-comma = false
+
+[tool.uv]
+dev-dependencies = [
+    "pre-commit>=4.3.0",
+    "pytest>=8.4.1",
+    "pytest-asyncio>=1.1.0",
+    "ruff>=0.12.9",
+]
